@@ -1,0 +1,27 @@
+body{
+	background-image: url(../images/RPS.png);
+	background-repeat: no-repeat;
+	background-position: center top; 
+	background-color: 	#3f4519;
+	font-family: 'Baloo Tammudu', cursive;
+}
+.jumbotron{
+	background-color:rgba(0, 0, 0, 0);
+	color:white;
+}
+.contenderBox{
+	color: 	white;
+	height:200px;
+	font-size: 	20px;
+}
+.formRow{
+	vertical-align: middle;
+	align-items: center;
+	color:white;
+	font-size: 	20px;
+
+}
+.col-centered{
+	float: none;
+	margin: 0 auto;
+}
