@@ -8,6 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 </head>
 <body>
 	<div class="jumbotron">
@@ -20,16 +21,29 @@
 	<div class="container">
 		<div class="row">
 	    	<div class="col-xs-4 text-center contenderBox">
-	    		  Contender 1
-	    		  <div class="playerBox" id="player1">
-	    		  </div>
+	    		<div id="player1Name">Contender 1</div>
+	    		<div id="player1wins">Wins: </div>
+	    		<div id="player1loss">Losses: </div>
+	    		<div class="playerBox" id="player1">
+	    		<span id="rock">Rock </span>
+	    		<span id="paper">Paper </span>
+	    		<span id="scissor">Scissor </span>
+	    		</div>
 	    	</div>
 	    	<div class="col-xs-4 text-center contenderBox">
 	    		  Stats
+	    		  <div id= "viewers"></div>
+	    		  <div id= "iPick">I Pick:</div>
+	    		  <div id= "choice"></div>
 	    	</div>
 	    	<div class="col-xs-4 text-center contenderBox">
-	    		  Contender 2
+	    		  <div id="player2Name">Contender 2</div>
+	    		  <div id="player2wins">Wins: </div>
+	    		  <div id="player2loss">Losses: </div>
 	    		  <div class="playerBox" id="player2">
+	    		  <span id="rock">Rock </span>
+	    		  <span id="paper">Paper </span>
+	    		  <span id="scissor">Scissor </span>
 	    		  </div>
 	    	</div>
      	</div>
@@ -38,10 +52,12 @@
      		<div class="form-group col-xs-4 col-centered">
                   <label for="name-input">Name:</label>
                   <input class="form-control" id="name-input" type="text">
+                  <button class="btn btn-default" id="submit" type="submit">Submit</button>
             </div>
      	</form>
      	</div>
 	</div>
-
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src= "assets/javascript/rps.js"></script>
 </body>
 </html>

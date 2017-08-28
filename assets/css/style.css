@@ -25,3 +25,14 @@ body{
 	float: none;
 	margin: 0 auto;
 }
+.btn{
+	color:#3f4519;
+	margin-top: 15px;
+}
+.playerBox{
+	visibility:hidden;
+	font-size: 	20px;
+}
+#iPick{
+	visibility:hidden;
+}
