@@ -23,13 +23,11 @@ var userName="";
 var PlayerNumber;
 var choice="";
 var opponentChoice="";
-var wins=0;
-var loss=0;
+
 var player1_wins=0;
 var player1_loss=0;
 var player2_wins=0;
 var player2_loss=0;
-var	gameState="begin";
 
 $("#submit").on("click",function(){
 	event.preventDefault();
@@ -69,7 +67,6 @@ $("#submit").on("click",function(){
 		});
 		currentGame.set({
 			userCount:ConnectedPlayers,
-			gameState:"ready"
 		})
 	}
 })
@@ -79,7 +76,7 @@ connectedRef.on("value", function(snap) {
     	var con = connectionsRef.push(true);
 	    con.onDisconnect().remove();
 	}
-});
+});	
 
 player1.on("value",function(snap){
 	if(snap.child("name").exists()){
@@ -132,10 +129,6 @@ currentGame.on("value",function(snap){
 		}else{
 			$("#submit").prop('disabled', false);
 		}
-	}
-	if(snap.child("gameState").exists()){
-		gameState=snap.val().gameState;
-		console.log("GameState: ",gameState)
 	}
 })
 
