@@ -26,8 +26,10 @@ var opponentChoice="";
 
 var player1_wins=0;
 var player1_loss=0;
+var player_Connected=0;
 var player2_wins=0;
 var player2_loss=0;
+var player2_Connected=0;
 
 $("#submit").on("click",function(){
 	event.preventDefault();
@@ -42,6 +44,7 @@ $("#submit").on("click",function(){
 	$("#name-input").val("");
 	if (ConnectedPlayers == 1){
 		PlayerNumber="1";
+		playerConnection=player1;
 		me = database.ref("currentGame1");
 		$("#player1").css("visibility", "visible");
 		player1.set({
@@ -51,11 +54,16 @@ $("#submit").on("click",function(){
 			choice:"",
 			player:"1",
 		});
+		player1.onDisconnect().remove();
+		player1.onDisconnect().set(currentGame.set({
+			userCount:"1"
+		}))
 		currentGame.set({
 			userCount:ConnectedPlayers
 		})
 	}else{
 		PlayerNumber="2";
+		playerConnection=player1;
 		me = database.ref("currentGame2");
 		$("#player2").css("visibility", "visible");
 		player2.set({
@@ -65,11 +73,13 @@ $("#submit").on("click",function(){
 			choice:"",
 			player:"2",
 		});
+		player2.onDisconnect().remove();
 		currentGame.set({
 			userCount:ConnectedPlayers,
 		})
 	}
 })
+
 
 connectedRef.on("value", function(snap) {
 	if (snap.val()) {
@@ -125,11 +135,12 @@ currentGame.on("value",function(snap){
 		ConnectedPlayers=snap.val().userCount;
 		if(snap.val().userCount >=2){
 			$("#submit").prop('disabled', true);
-
 		}else{
 			$("#submit").prop('disabled', false);
 		}
 	}
+	// player2.onDisconnect().set({userCount:lostPlayer});
+	// player1.onDisconnect().set({userCount:lostPlayer});
 })
 
 
@@ -159,6 +170,7 @@ function evaluateGame(){
 	if (opponentChoice != "" &&	 choice !=""){
 		if (choice==opponentChoice){
 			console.log("tie");
+			$("#outcome").html("TIE");
 			$("#iPick").css("visibility", "hidden");
 			$("#choice").html("");
 			$("#player"+PlayerNumber).css("visibility","visible");
@@ -166,27 +178,33 @@ function evaluateGame(){
 		else if (choice == "Rock"){
 			if(opponentChoice == "Scissor"){
 				console.log("winner");
+				$("#outcome").html("Winner");
 				winner();
 			}else{
 				console.log("loser");
+				$("#outcome").html("LOSER");
 				loser()
 			}
 		}
 		else if (choice == "Paper"){
 			if(opponentChoice == "Rock"){
 				console.log("winner");
+				$("#outcome").html("Winner");
 				winner();
 			}else{
 				console.log("loser");
+				$("#outcome").html("LOSER");
 				loser()
 			}
 		}
 		else if (choice == "Scissor"){
 			if(opponentChoice == "Paper"){
 				console.log("winner");
+				$("#outcome").html("Winner");
 				winner();
 			}else{
 				console.log("loser");
+				$("#outcome").html("LOSER");
 				loser()
 			}
 		}
